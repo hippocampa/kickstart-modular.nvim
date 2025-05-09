@@ -169,14 +169,20 @@ return {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
-        signs = vim.g.have_nerd_font and {
-          text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
-          },
-        } or {},
+        signs = vim.g.have_nerd_font
+            and {
+              text = {
+                -- [vim.diagnostic.severity.ERROR] = '󰅚 ',
+                -- [vim.diagnostic.severity.WARN] = '󰀪 ',
+                -- [vim.diagnostic.severity.INFO] = '󰋽 ',
+                -- [vim.diagnostic.severity.HINT] = '󰌶 ',
+                [vim.diagnostic.severity.ERROR] = 'E ',
+                [vim.diagnostic.severity.WARN] = 'W ',
+                [vim.diagnostic.severity.INFO] = 'I ',
+                [vim.diagnostic.severity.HINT] = 'H ',
+              },
+            }
+          or {},
         virtual_text = {
           source = 'if_many',
           spacing = 2,
@@ -208,7 +214,17 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {
+          settings = {
+            ['clangd'] = {
+              ['fallback-style'] = 'LLVM',
+              ['style'] = {
+                IndentWidth = 2,
+                UseTab = 'Never',
+              },
+            },
+          },
+        },
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
