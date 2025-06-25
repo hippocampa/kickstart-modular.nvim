@@ -30,7 +30,17 @@ return {
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'gruber-darker'
+      -- vim.cmd.colorscheme 'gruber-darker'
+    end,
+  },
+  {
+    'bluz71/vim-moonfly-colors',
+    name = 'moonfly',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- require('moonfly').setup {}
+      vim.cmd.colorscheme 'moonfly'
     end,
   },
 }
